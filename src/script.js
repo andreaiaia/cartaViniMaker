@@ -45,14 +45,14 @@ function makeTutto() {
 function makeCantina(n) {
   const lista = document.querySelector('.lista');
 
-  nome_cantina = document.getElementById(`nome_cantina_${n}`).value;
+  const nome_cantina = document.getElementById(`nome_cantina_${n}`).value;
   const cantina = document.createElement('P');
   cantina.innerText = nome_cantina;
   cantina.className = 'cantina';
 
   const vini = document.createElement('DIV');
   vini.className = `vini_${n}`;
-  
+
 
 
   lista.appendChild(cantina);
