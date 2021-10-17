@@ -141,6 +141,22 @@ button:active {
 }
 
 @media print {
+  main {
+    margin: 2.5cm 2cm 2cm;
+  }
+  #p_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 21cm;
+  }
+  .title {
+    padding-left: 2cm;
+  }
+  .region {
+    text-align: center;
+  }
+
   .no_print {
     display: none;
   }

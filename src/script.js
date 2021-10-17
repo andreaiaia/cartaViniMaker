@@ -23,8 +23,10 @@ function makeTop() {
   const intestazione = document.createElement('DIV');
   intestazione.classList.add('intestazione');
   intestazione.innerHTML = `
-  <p class="title">vini ${tipo}<span class="subtitle"> ${tipo_en} wine</span></p>
-  <p class="region">${regione}</p>
+  <div id="p_header">
+    <p class="title">vini ${tipo}<span class="subtitle"> ${tipo_en} wine</span></p>
+    <p class="region">${regione}</p>
+  </div>
   `;
   main.appendChild(intestazione);
 }
