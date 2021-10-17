@@ -139,3 +139,9 @@ button:active {
   background-color: #f44336;
   border: 2px solid #f44336;
 }
+
+@media print {
+  .no_print {
+    display: none;
+  }
+}

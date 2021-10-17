@@ -54,7 +54,9 @@ function makeCantina(n) {
   vini_cantina.classList.add('vini');
   
   const in_cantina = document.querySelectorAll(`.v_${n}`);
+  console.log(in_cantina);
   in_cantina.forEach((vino) => {
+    console.log(vino);
     const nuovo = makeVino(vino);
     const p = vino.querySelector('.in_prezzo').value;
     const prezzo = document.createElement('P');
@@ -101,19 +103,19 @@ function addCantina() {
   <div class="nuovo_vino v_${i_c}">
     <p>
       <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
-      <input type="text" id="tipo_${i_c}_${i_v}">
+      <input type="text" id="tipo_${i_c}_${i_v}" class="in_tipo">
     </p>
     <p>
       <label for="nome_vino_${i_c}_${i_v}">Nome:</label>
-      <input type="text" id="nome_vino_${i_c}_${i_v}">
+      <input type="text" id="nome_vino_${i_c}_${i_v}" class="in_nome">
     </p>
     <p>
       <label for="indic_${i_c}_${i_v}">Indicazione:</label>
-      <input type="text" id="indic_${i_c}_${i_v}"">
+      <input type="text" id="indic_${i_c}_${i_v}" class="in_indic">
     </p>
     <p>
       <label for="prezzo_${i_c}_${i_v}">Prezzo (scrivilo nella forma xx,xx)</label>
-      <input type="text" id="prezzo_${i_c}_${i_v}">
+      <input type="text" id="prezzo_${i_c}_${i_v}" class="in_prezzo">
     </p>
   </div>
   `;
@@ -124,23 +126,24 @@ function addVino() {
   i_v++;
   const cantina = document.querySelector(`.c_${i_c}`);
   const vino = document.createElement('DIV');
-  vino.className = "nuovo_vino";
+  vino.classList.add("nuovo_vino");
+  vino.classList.add(`v_${i_c}`);
   vino.innerHTML = `
   <p>
-    <label for="tipo__${i_c}_${i_v}">Anno e tipo:</label>
-    <input type="text" id="tipo__${i_c}_${i_v}">
+    <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
+    <input type="text" id="tipo_${i_c}_${i_v}" class="in_tipo">
   </p>
   <p>
-    <label for="nome_vino__${i_c}_${i_v}">Nome:</label>
-    <input type="text" id="nome_vino__${i_c}_${i_v}">
+    <label for="nome_vino_${i_c}_${i_v}">Nome:</label>
+    <input type="text" id="nome_vino_${i_c}_${i_v}" class="in_nome">
   </p>
   <p>
-    <label for="indic__${i_c}_${i_v}">Indicazione:</label>
-    <input type="text" id="indic__${i_c}_${i_v}">
+    <label for="indic_${i_c}_${i_v}">Indicazione:</label>
+    <input type="text" id="indic_${i_c}_${i_v}" class="in_indic">
   </p>
   <p>
-    <label for="prezzo__${i_c}_${i_v}">Prezzo (scrivilo nella forma xx,xx)</label>
-    <input type="text" id="prezzo__${i_c}_${i_v}">
+    <label for="prezzo_${i_c}_${i_v}">Prezzo (scrivilo nella forma xx,xx)</label>
+    <input type="text" id="prezzo_${i_c}_${i_v}" class="in_prezzo">
   </p>
   <div class="spacing"></div>
   `;
