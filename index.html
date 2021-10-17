@@ -9,13 +9,60 @@
 </head>
 <body>
   <header>
-    <h1>Carta dei vini Maker</h1>
+    <div id="contatore" class="c_cantina">1</div>
+    <div id="contatore" class="c_vino">1</div>
+
+    <div class="logo">
+      <h1>Carta dei vini Maker</h1>
+    </div>
   </header>
   <main>
-    <p class="title">vini rossi<span class="subtitle"> Red wine</span></p>
-    <p class="region">basilicata</p>
-
-    <div class="lista">
+    <div id="editing">
+      <form>
+        <p>Inserisci il tipo di vino (rossi, bianchi o rosati)</p>
+        <input type="text" name="tipo" id="t_vino">
+        <p>Anche in inglese:</p>
+        <input type="text" name="tipo" id="en_t_vino">
+        <p>
+          <label for="regione">Inserisci la regione delle cantine:</label>
+          <input type="text" id="regione">
+        </p>
+        <hr>
+        <div class="nuova_cantina c_0">
+          <div class="spacing">
+            <label for="nome_cantina_0" class="standout">Inserisci nome della cantina:</label>
+            <input type="text" id="nome_cantina_0">
+          </div>
+          <div class="nuovo_vino">
+            <p>
+              <label for="tipo_0_0">Anno e tipo:</label>
+              <input type="text" id="tipo_0_0">
+            </p>
+            <p>
+              <label for="nome_vino_0_0">Nome:</label>
+              <input type="text" id="nome_vino_0_0">
+            </p>
+            <p>
+              <label for="indic_0_0">Indicazione:</label>
+              <input type="text" id="indic_0_0">
+            </p>
+            <p>
+              <label for="prezzo_0_0">Prezzo (scrivilo nella forma 00,00)</label>
+              <input type="text" id="prezzo_0_0">
+            </p>
+            <div class="spacing"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="buttons">
+      <button id="new_vino" class="btn-add" onclick="addVino()">Nuovo vino</button>
+      <button id="new_cantina" class="btn-add" onclick="addCantina()">Nuova cantina</button>
+      <button id="preview" class="btn-done" onclick="render()">FINITO</button>
+      <button id="save">Salva</button>
+    </div>
+<!--
+     <div class="lista">
       <p class="cantina">cantine del notaio</p>
       
       <div class="vini">
@@ -37,7 +84,9 @@
 
       </div>
       
-    </div>
+    </div> 
+-->
+  
   </main>
 </body>
 <script src="src/script.js"></script>

@@ -6,7 +6,7 @@ html {
 
 body {
   width: 21cm;
-  height: calc(29.7cm + 67.5px);
+  /* height: calc(29.7cm + 67.5px); */
   margin: auto;
   padding: 0;
   background-color: white;
@@ -14,18 +14,25 @@ body {
 }
 
 header {
-  font-family: 'Faster One', cursive;
-  text-align: center;
   margin-top: 0;
 }
-header > h1 {
+.logo {
+  text-align: center;
+  font-family: 'Faster One', cursive;
   margin: 0;
-  padding: 1rem 0;
+  padding: 1rem 0 0;
   border-bottom: 1px solid grey;
 }
 
 main {
   margin: 2cm;
+}
+#contatore {
+  display: none;
+}
+.standout {
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .title {
@@ -80,6 +87,7 @@ main {
 }
 
 .cantina {
+  text-align: end;
   margin: 5px 0;
   font-size: 16pt;
   font-weight: bold;
@@ -93,4 +101,38 @@ main {
 .vini {
   display: grid;
   grid-template-columns: 1fr 18%;
+}
+
+/* STYLING DEL FORM */
+.spacing {
+  margin: 2.5rem 0 ;
+}
+.buttons {
+  background-color: #555555;
+  position: fixed;
+  top: 35%;
+  right: 10%;
+  display: grid;
+}
+button {
+  border: none;
+  background-color: #008CBA;
+  border: 2px solid #008CBA;
+  color: white;
+  padding: 10px 15px;
+  margin: 1rem;
+}
+button:hover {
+  border: 2px solid white;
+}
+button:active {
+  transform: scale(.96);
+}
+.btn-add {
+  background-color:#4CAF50;
+  border: 2px solid #4CAF50;
+}
+.btn-done {
+  background-color: #f44336;
+  border: 2px solid #f44336;
 }
