@@ -48,29 +48,31 @@ function makeCantina(n) {
   const lista = document.querySelector('.lista');
 
   const nome_cantina = document.getElementById(`nome_cantina_${n}`).value;
-  const cantina = document.createElement('P');
-  cantina.innerText = nome_cantina;
-  cantina.className = 'cantina';
 
-  const vini_cantina = document.createElement('DIV');
-  vini_cantina.classList.add('vini');
+  if (nome_cantina != null) {
+    const cantina = document.createElement('P');
+    cantina.innerText = nome_cantina;
+    cantina.className = 'cantina';
   
-  const in_cantina = document.querySelectorAll(`.v_${n}`);
-  console.log(in_cantina);
-  in_cantina.forEach((vino) => {
-    console.log(vino);
-    const nuovo = makeVino(vino);
-    const p = vino.querySelector('.in_prezzo').value;
-    const prezzo = document.createElement('P');
-    prezzo.classList.add('price');
-    prezzo.innerText = `€ ${p}`;
-
-    vini_cantina.appendChild(nuovo);
-    vini_cantina.appendChild(prezzo);
-  });
-
-  lista.appendChild(cantina);
-  lista.appendChild(vini_cantina)
+    const vini_cantina = document.createElement('DIV');
+    vini_cantina.classList.add('vini');
+    
+    const in_cantina = document.querySelectorAll(`.n_${n}`);
+    in_cantina.forEach((vino) => {
+      console.log(vino);
+      const nuovo = makeVino(vino);
+      const p = vino.querySelector('.in_prezzo').value;
+      const prezzo = document.createElement('P');
+      prezzo.classList.add('price');
+      prezzo.innerText = `€ ${p}`;
+  
+      vini_cantina.appendChild(nuovo);
+      vini_cantina.appendChild(prezzo);
+    });
+  
+    lista.appendChild(cantina);
+    lista.appendChild(vini_cantina);
+  }
 }
 
 function makeVino(vino) {
@@ -101,6 +103,7 @@ function addCantina() {
   <div class="spacing">
     <label for="nome_cantina_${i_c}" class="standout">Inserisci nome della cantina:</label>
     <input type="text" id="nome_cantina_${i_c}">
+    <button type="button" class="btn-del c_${i_c}" onclick="delCantina(this)">x</button>
   </div>
   <div class="nuovo_vino v_${i_c}">
     <p>
@@ -129,8 +132,10 @@ function addVino() {
   const cantina = document.querySelector(`.c_${i_c}`);
   const vino = document.createElement('DIV');
   vino.classList.add("nuovo_vino");
-  vino.classList.add(`v_${i_c}`);
+  vino.classList.add(`v_${i_v}`);
+  vino.classList.add(`n_${i_c}`);
   vino.innerHTML = `
+  <button type="button" class="btn-del v_${i_v}" onclick="delVino(this)">x</button>
   <p>
     <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
     <input type="text" id="tipo_${i_c}_${i_v}" class="in_tipo">
@@ -150,4 +155,14 @@ function addVino() {
   <div class="spacing"></div>
   `;
   cantina.appendChild(vino);
+}
+
+function delCantina(item) {
+  const to_kill = document.querySelector(`.${item.classList[1]}`);
+  to_kill.remove();
+}
+
+function delVino(item) {
+  const to_kill = document.querySelector(`.${item.classList[1]}`);
+  to_kill.remove();
 }

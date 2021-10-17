@@ -108,7 +108,7 @@ main {
 
 /* STYLING DEL FORM */
 .spacing {
-  margin: 2.5rem 0 ;
+  margin: 2rem 0 ;
 }
 .buttons {
   background-color: #555555;
@@ -116,6 +116,9 @@ main {
   top: 35%;
   right: 10%;
   display: grid;
+}
+input {
+  width: 80%;
 }
 button {
   border: none;
@@ -139,6 +142,28 @@ button:active {
   background-color: #f44336;
   border: 2px solid #f44336;
 }
+.btn-del {
+  display: inline;
+  padding: 3px 8px;
+  background-color: #f44336;
+  border: 2px solid #f44336;
+}
+.btn-del:hover {
+  border: 2px solid black;
+}
+p {
+  margin: 8px 0;
+}
+
+.nuovo_vino {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+}
+.nuovo_vino > p > * {
+  display: block;
+}
+
+/* MEDIA QUERIES */
 
 @media print {
   main {
