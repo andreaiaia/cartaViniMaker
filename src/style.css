@@ -6,7 +6,7 @@ html {
 
 body {
   width: 21cm;
-  /* height: calc(29.7cm + 67.5px); */
+  min-height: calc(29.7cm + 67.5px);
   margin: auto;
   padding: 0;
   background-color: white;
@@ -17,8 +17,10 @@ header {
   margin-top: 0;
 }
 .logo {
+  background-image: url('/src/bg_stars.gif');
   text-align: center;
   font-family: 'Faster One', cursive;
+  color:lime;
   margin: 0;
   padding: 1rem 0 0;
   border-bottom: 1px solid grey;
@@ -26,6 +28,7 @@ header {
 
 main {
   margin: 2cm;
+  padding-bottom: 2cm;
 }
 #contatore {
   display: none;

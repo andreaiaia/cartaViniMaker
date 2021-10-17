@@ -37,7 +37,7 @@ function makeLista() {
 
 function makeTutto() {
   let k_c = 0;
-  for (k_c; k_c < i_c; k_c++) {
+  for (k_c; k_c <= i_c; k_c++) {
     makeCantina(k_c);
   }
 }
@@ -50,17 +50,40 @@ function makeCantina(n) {
   cantina.innerText = nome_cantina;
   cantina.className = 'cantina';
 
-  const vini = document.createElement('DIV');
-  vini.className = `vini_${n}`;
+  const vini_cantina = document.createElement('DIV');
+  vini_cantina.classList.add('vini');
+  
+  const in_cantina = document.querySelectorAll(`.v_${n}`);
+  in_cantina.forEach((vino) => {
+    const nuovo = makeVino(vino);
+    const p = vino.querySelector('.in_prezzo').value;
+    const prezzo = document.createElement('P');
+    prezzo.classList.add('price');
+    prezzo.innerText = `€ ${p}`;
 
-
+    vini_cantina.appendChild(nuovo);
+    vini_cantina.appendChild(prezzo);
+  });
 
   lista.appendChild(cantina);
-  lista.appendChild(vini);
+  lista.appendChild(vini_cantina)
 }
 
-function makeVino(infoVino) {
-  const vini = document.querySelectorAll('.vini');
+function makeVino(vino) {
+  const tipo = vino.querySelector('.in_tipo').value;
+  const nome = vino.querySelector('.in_nome').value;
+  const indic = vino.querySelector('.in_indic').value;
+
+  const nuovo = document.createElement('DIV');
+  nuovo.classList.add('vino');
+  nuovo.innerHTML = `
+    <p class="tipo">${tipo}</p>
+    <span> - </span>
+    <p class="nome">${nome}</p>
+    <p class="denom">${indic}</p>
+  `;
+
+  return nuovo;
 }
 
 /* INPUT MANAGEMENT */
@@ -75,7 +98,7 @@ function addCantina() {
     <label for="nome_cantina_${i_c}" class="standout">Inserisci nome della cantina:</label>
     <input type="text" id="nome_cantina_${i_c}">
   </div>
-  <div class="nuovo_vino">
+  <div class="nuovo_vino v_${i_c}">
     <p>
       <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
       <input type="text" id="tipo_${i_c}_${i_v}">
