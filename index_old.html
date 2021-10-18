@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/style_old.css">
+  <title>Carta dei Vini</title>
+</head>
+<body>
+  <header>
+    <div id="contatore" class="c_cantina">0</div>
+    <div id="contatore" class="c_vino">0</div>
+
+    <div class="logo no_print">
+      <h1>Carta dei vini Maker</h1>
+    </div>
+  </header>
+  <main>
+    <div id="editing">
+      <form>
+        <label for="t_vino">Inserisci il tipo di vino (rossi, bianchi o rosati)</label>
+        <input type="text" name="tipo" id="t_vino">
+        <p>
+          <label for="en_t_vino">Anche in inglese:</label>
+          <input type="text" name="tipo" id="en_t_vino">
+        </p>
+        <p>
+          <label for="regione">Inserisci la regione delle cantine:</label>
+          <input type="text" id="regione">
+        </p>
+        <hr>
+        <div class="nuova_cantina c_0">
+          <div class="spacing">
+            <label for="nome_cantina_0" class="standout">Inserisci nome della cantina:</label>
+            <input type="text" id="nome_cantina_0">
+            <button type="button" class="btn-del c_0" onclick="delCantina(this)">x</button>
+          </div>
+          <div class="nuovo_vino v_0 n_0">
+            <button type="button" class="btn-del v_0" onclick="delVino(this)">x</button>
+            <p>
+              <label for="tipo_0_0">Anno e tipo:</label>
+              <input type="text" id="tipo_0_0" class="in_tipo">
+            </p>
+            <p>
+              <label for="nome_vino_0_0">Nome:</label>
+              <input type="text" id="nome_vino_0_0" class="in_nome">
+            </p>
+            <p>
+              <label for="indic_0_0">Indicazione:</label>
+              <input type="text" id="indic_0_0" class="in_indic">
+            </p>
+            <p>
+              <label for="prezzo_0_0">Prezzo (scrivilo nella forma 00,00)</label>
+              <input type="text" id="prezzo_0_0" class="in_prezzo">
+            </p>
+            <div class="spacing"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="buttons no_print">
+      <button id="new_vino" class="btn-add" onclick="addVino()">Nuovo vino</button>
+      <button id="new_cantina" class="btn-add" onclick="addCantina()">Nuova cantina</button>
+      <button id="save">Salva</button>
+      <button id="preview" class="btn-done" onclick="render()">FINITO</button>
+    </div>
+  </main>
+</body>
+<script src="src/script_old.js"></script>
+</html>

@@ -1,168 +1,102 @@
-const form = document.querySelector('FORM');
-const contatore_cantina = document.querySelector('.c_cantina');
-const contatore_vino = document.querySelector('.c_vino');
+// Global vars
 const main = document.querySelector('MAIN');
-let i_c = contatore_cantina.innerText;
-let i_v = contatore_vino.innerText;
 
-/* RENDERING */
-function render() {
-  const editing = document.querySelector('#editing');
-  editing.style.display = "none";
-
-  makeTop();
-  makeLista();
-  makeTutto();
+// Helper functions
+function spacing(parent, type) {
+  const space = document.createElement('DIV');
+  space.classList.add(type);
+  parent.appendChild(space);
 }
 
-function makeTop() {
-  const tipo = document.getElementById("t_vino").value;
-  const tipo_en = document.getElementById("en_t_vino").value;
-  const regione = document.getElementById("regione").value;
+// SCELTA TIPOLOGIA VINO
+// Selezione elementi DOM
+const choiceBtns = document.querySelectorAll('.tipo');
 
-  const intestazione = document.createElement('DIV');
-  intestazione.classList.add('intestazione');
-  intestazione.innerHTML = `
-  <div id="p_header">
-    <p class="title">vini ${tipo}<span class="subtitle"> ${tipo_en} wine</span></p>
-    <p class="region">${regione}</p>
-  </div>
-  `;
-  main.appendChild(intestazione);
-}
+// Event listeners
+choiceBtns.forEach(btn => btn.addEventListener("click", (e) => {initForms(e.target.id)}));
 
-function makeLista() {
-  const lista = document.createElement('DIV');
-  lista.classList.add('lista');
-  main.appendChild(lista);
-}
-
-function makeTutto() {
-  let k_c = 0;
-  for (k_c; k_c <= i_c; k_c++) {
-    makeCantina(k_c);
+// Funzioni
+function initForms(vinoScelto) {
+  let vino_it, vino_en;
+  switch (vinoScelto) {
+    case "rosso_red":
+      vino_it = "rossi";
+      vino_en = "red";
+      break;
+    case "bianco_white":
+      vino_it = "bianchi";
+      vino_en = "white";
+      break;
+    case "rosato_rose":
+      vino_it = "rosati";
+      vino_en = "rose";
+      break;
   }
+  const opzioni = document.getElementById("scegli_tipo");
+  opzioni.remove();
+  
+  const title = document.createElement('h1');
+  title.id = "p_header";
+  title.innerHTML = `vini ${vino_it}<span class="subtitle"> ${vino_en} wine</span>`;
+  main.appendChild(title);
+  spacing(main, 'divider');
+
+  newRegione();
 }
 
-function makeCantina(n) {
-  const lista = document.querySelector('.lista');
+// CREAZIONE DEGLI INPUT FIELDS
+// input nome regione
+function newRegione() {
+  const regione = document.createElement('DIV');
+  regione.classList.add("regione");
+  regione.innerHTML = `
+      <label for="regione">Regione delle cantine:</label>
+      <input type="text" name="regione">`;
 
-  const nome_cantina = document.getElementById(`nome_cantina_${n}`).value;
+  main.appendChild(regione);
+  spacing(regione, 'divider');
 
-  if (nome_cantina != null) {
-    const cantina = document.createElement('P');
-    cantina.innerText = nome_cantina;
-    cantina.className = 'cantina';
-  
-    const vini_cantina = document.createElement('DIV');
-    vini_cantina.classList.add('vini');
-    
-    const in_cantina = document.querySelectorAll(`.n_${n}`);
-    in_cantina.forEach((vino) => {
-      console.log(vino);
-      const nuovo = makeVino(vino);
-      const p = vino.querySelector('.in_prezzo').value;
-      const prezzo = document.createElement('P');
-      prezzo.classList.add('price');
-      prezzo.innerText = `€ ${p}`;
-  
-      vini_cantina.appendChild(nuovo);
-      vini_cantina.appendChild(prezzo);
-    });
-  
-    lista.appendChild(cantina);
-    lista.appendChild(vini_cantina);
-  }
+  newCantina(regione);
 }
 
-function makeVino(vino) {
-  const tipo = vino.querySelector('.in_tipo').value;
-  const nome = vino.querySelector('.in_nome').value;
-  const indic = vino.querySelector('.in_indic').value;
-
-  const nuovo = document.createElement('DIV');
-  nuovo.classList.add('vino');
-  nuovo.innerHTML = `
-    <p class="tipo">${tipo}</p>
-    <span> - </span>
-    <p class="nome">${nome}</p>
-    <p class="denom">${indic}</p>
-  `;
-
-  return nuovo;
-}
-
-/* INPUT MANAGEMENT */
-function addCantina() {
-  i_c++; 
-  i_v = 0;
+// input nome cantine
+function newCantina(parent) {
   const cantina = document.createElement('DIV');
-  cantina.className = "nuova_cantina";
-  cantina.className = `c_${i_c}`;
+  cantina.classList.add("cantina");
   cantina.innerHTML = `
-  <div class="spacing">
-    <label for="nome_cantina_${i_c}" class="standout">Inserisci nome della cantina:</label>
-    <input type="text" id="nome_cantina_${i_c}">
-    <button type="button" class="btn-del c_${i_c}" onclick="delCantina(this)">x</button>
-  </div>
-  <div class="nuovo_vino v_${i_c}">
-    <p>
-      <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
-      <input type="text" id="tipo_${i_c}_${i_v}" class="in_tipo">
-    </p>
-    <p>
-      <label for="nome_vino_${i_c}_${i_v}">Nome:</label>
-      <input type="text" id="nome_vino_${i_c}_${i_v}" class="in_nome">
-    </p>
-    <p>
-      <label for="indic_${i_c}_${i_v}">Indicazione:</label>
-      <input type="text" id="indic_${i_c}_${i_v}" class="in_indic">
-    </p>
-    <p>
-      <label for="prezzo_${i_c}_${i_v}">Prezzo (scrivilo nella forma xx,xx)</label>
-      <input type="text" id="prezzo_${i_c}_${i_v}" class="in_prezzo">
-    </p>
-  </div>
-  `;
-  form.appendChild(cantina);
+    <label for="cantina">Cantina:</label>
+    <input type="text" name="cantina">`;
+
+  parent.appendChild(cantina);
+  spacing(parent, 'spacing');
+
+  newVino(cantina);
 }
 
-function addVino() {
-  i_v++;
-  const cantina = document.querySelector(`.c_${i_c}`);
+// input vino
+function newVino(parent) {
   const vino = document.createElement('DIV');
-  vino.classList.add("nuovo_vino");
-  vino.classList.add(`v_${i_v}`);
-  vino.classList.add(`n_${i_c}`);
+  vino.classList.add('vino');
   vino.innerHTML = `
-  <button type="button" class="btn-del v_${i_v}" onclick="delVino(this)">x</button>
-  <p>
-    <label for="tipo_${i_c}_${i_v}">Anno e tipo:</label>
-    <input type="text" id="tipo_${i_c}_${i_v}" class="in_tipo">
-  </p>
-  <p>
-    <label for="nome_vino_${i_c}_${i_v}">Nome:</label>
-    <input type="text" id="nome_vino_${i_c}_${i_v}" class="in_nome">
-  </p>
-  <p>
-    <label for="indic_${i_c}_${i_v}">Indicazione:</label>
-    <input type="text" id="indic_${i_c}_${i_v}" class="in_indic">
-  </p>
-  <p>
-    <label for="prezzo_${i_c}_${i_v}">Prezzo (scrivilo nella forma xx,xx)</label>
-    <input type="text" id="prezzo_${i_c}_${i_v}" class="in_prezzo">
-  </p>
-  <div class="spacing"></div>
+    <p>
+      <label for="anno_tipo">Anno e tipo:</label>
+      <input type="text" name="anno_tipo">
+    </p>
+    <p>
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome">
+    </p>
+    <p>
+      <label for="denom">Indicazione:</label>
+      <input type="text" name="denom">
+    </p>
+    <p>
+      <label for="prezzo">Costo: (in 00,00):</label>
+      <input type="text" name="costo">
+    </p>
   `;
-  cantina.appendChild(vino);
+
+  parent.appendChild(vino);
 }
 
-function delCantina(item) {
-  const to_kill = document.querySelector(`.${item.classList[1]}`);
-  to_kill.remove();
-}
-
-function delVino(item) {
-  const to_kill = document.querySelector(`.${item.classList[1]}`);
-  to_kill.remove();
-}
+initForms("rosso_red");

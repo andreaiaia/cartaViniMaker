@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+html {
+  background-color: grey;
+}
+
+body {
+  width: 21cm;
+  min-height: calc(29.7cm + 67.5px);
+  margin: auto;
+  padding: 0;
+  background-color: white;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+  margin-top: 0;
+}
+.logo {
+  background-image: url('bg_stars.gif');
+  text-align: center;
+  font-family: 'Faster One', cursive;
+  color:lime;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-bottom: 1px solid grey;
+}
+
+main {
+  margin: 2cm;
+  padding-bottom: 2cm;
+}
+#contatore {
+  display: none;
+}
+.standout {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 5px 0;
+  font-size: 23pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.subtitle {
+  margin: 5px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.region {
+  margin: 5px 0 25px;
+  text-align: center;
+  font-size: 17pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.tipo {
+  margin: 5px 0;
+  font-size: 12pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+.nome {
+  margin: 5px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+.denom {
+  margin: 5px 0;
+  font-size: 10pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline;
+}
+.price {
+  margin: 6px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  display: inline;
+}
+.vino {
+  margin: 6px 0 0 10px;
+}
+
+.cantina {
+  text-align: end;
+  margin: 5px 0;
+  font-size: 16pt;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.lista {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+}
+.vini {
+  display: grid;
+  grid-template-columns: 1fr 18%;
+}
+
+/* STYLING DEL FORM */
+.spacing {
+  margin: 2rem 0 ;
+}
+.buttons {
+  background-color: #555555;
+  position: fixed;
+  top: 35%;
+  right: 10%;
+  display: grid;
+}
+input {
+  width: 80%;
+}
+button {
+  border: none;
+  background-color: #008CBA;
+  border: 2px solid #008CBA;
+  color: white;
+  padding: 10px 15px;
+  margin: 1rem;
+}
+button:hover {
+  border: 2px solid white;
+}
+button:active {
+  transform: scale(.96);
+}
+.btn-add {
+  background-color:#4CAF50;
+  border: 2px solid #4CAF50;
+}
+.btn-done {
+  background-color: #f44336;
+  border: 2px solid #f44336;
+}
+.btn-del {
+  display: inline;
+  padding: 3px 8px;
+  background-color: #f44336;
+  border: 2px solid #f44336;
+}
+.btn-del:hover {
+  border: 2px solid black;
+}
+p {
+  margin: 8px 0;
+}
+
+.nuovo_vino {
+  /* display: grid;
+  grid-template-columns: 1fr 1fr; */
+}
+.nuovo_vino > p > * {
+  display: block;
+}
+
+/* MEDIA QUERIES */
+
+@media print {
+  main {
+    margin: 2.5cm 2cm 2cm;
+  }
+  #p_header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 21cm;
+  }
+  .title {
+    padding-left: 2cm;
+  }
+  .region {
+    text-align: center;
+  }
+
+  .no_print {
+    display: none;
+  }
+}
