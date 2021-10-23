@@ -1,5 +1,18 @@
 // Global vars
 const main = document.querySelector('MAIN');
+// Objects for LocalStorage
+const vino = {};
+const listaVini = {};
+const cantineVini = {};
+const regioniVini = {};
+const cartaVini = {
+  rossi:regioniVini,
+  bianchi:regioniVini,
+  rosati:regioniVini,
+  spumanti:regioniVini,
+  birre:regioniVini,
+};
+
 
 // Helper functions
 function spacing(parent, type) {
@@ -32,19 +45,27 @@ addVino.addEventListener("click", () => {
 
 // Funzioni
 function initForms(vinoScelto) {
-  let vino_it, vino_en;
+  let ita, eng;
   switch (vinoScelto) {
-    case "rosso_red":
-      vino_it = "rossi";
-      vino_en = "red";
+    case "rosso":
+      ita = "vini rossi";
+      eng = "red wines";
       break;
-    case "bianco_white":
-      vino_it = "bianchi";
-      vino_en = "white";
+    case "bianco":
+      ita = "vini bianchi";
+      eng = "white wines";
       break;
-    case "rosato_rose":
-      vino_it = "rosati";
-      vino_en = "rose";
+    case "rosato":
+      ita = "vini rosati";
+      eng = "rose wines";
+      break;
+    case "spumante":
+      ita = "bollicine";
+      eng = "bubbles";
+      break;
+    case "birra":
+      ita = "birre artigianali";
+      eng = "craft beer";
       break;
   }
   const opzioni = document.getElementById("scegli_tipo");
@@ -52,7 +73,7 @@ function initForms(vinoScelto) {
   
   const title = document.createElement('h1');
   title.id = "p_header";
-  title.innerHTML = `vini ${vino_it}<span class="subtitle"> ${vino_en} wine</span>`;
+  title.innerHTML = `${ita}<span class="subtitle"> ${eng}</span>`;
   main.appendChild(title);
 
   newRegione();
@@ -132,7 +153,42 @@ function delItem(parent) {
   delBtn.addEventListener("click", () => {parent.remove()});
 }
 
+// SAVING AND CREATING PREVIEW
+const saveBtn = document.querySelector('#save');
+
+saveBtn.addEventListener("click", save);
+
+function save() {
+  const selRegioni = main.querySelectorAll('.regione');
+
+  selRegioni.forEach(regione => {
+    saveCantine(regione);
+  });
+}
+
+function saveCantine(regione) {
+  const selCantine = regione.querySelectorAll('.cantina');
+
+  selCantine.forEach(cantina => {
+    saveVini(cantina);
+  });
+}
+
+function saveVini(cantina) {
+  const selVini = cantina.querySelectorAll('.vino');
+  const vini = {}; 
+  let i = 0;
+  selVini.forEach(vino => {
+    const inputs = vino.querySelectorAll('INPUT');
+    const info = {};
+    inputs.forEach(inp => {
+      info[`${inp.name}`]=`${inp.value}`;
+    });
+    vini[`vino${i}`] = info;
+    i++;
+  });
+  console.log(vini);
+}
 
 
-
-initForms("rosso_red");
+initForms("rosso");

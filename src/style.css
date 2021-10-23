@@ -68,9 +68,24 @@ button:active {
   background-color: #fa8dfae7;
   border: 3px solid #fa8dfae7;
 }
-#rosso_red:hover, #bianco_white:hover, #rosato_rose:hover {
+#spumante {
+  color: rgb(43, 43, 43);
+  background-color: #adff60e7;
+  border: 3px solid #adff60e7;
+}
+#birra {
+  color: rgb(43, 43, 43);
+  background-color: #ffd560e7;
+  border: 3px solid #ffd560e7;
+}
+#rosso_red:hover, 
+#bianco_white:hover, 
+#rosato_rose:hover,
+#spumante:hover,
+#birra:hover {
   border: 3px solid black
 }
+
 
 .btn-save {
   background-color:#4CAF50;

@@ -1,0 +1,42 @@
+{
+  "rossi": {
+    "regione1": {
+      "nomeRegione":"basilicata",
+      "cantina1": {
+        "nomeCantina":"cantine del notaio",
+        "vino1": {
+          "anno": "2018 aglianico del vulture",
+          "nome": "l'atto",
+          "indicazione": "igp",
+          "prezzo": "18,00"
+        }
+      }
+    },
+    "regione2": {
+      "nomeRegione": "sicilia",
+      "cantina1": {
+        "nomeCantina": "cantine dell'etna",
+        "vino1": {
+          "anno": "2015 aglianico dell'etna",
+          "nome": "il cratere",
+          "indicazione": "dop",
+          "prezzo": "30,00"
+        }
+      }
+    }
+  },
+  "bianchi": {
+    "regione1": {
+      "nomeRegione": "basilicata",
+      "cantina1": {
+        "nomeCantina":"terre degli svevi",
+        "vino1": {
+          "anno": "2020 aglianico del vulture",
+          "nome": "re manfredi",
+          "indicazione": "doc",
+          "prezzo": "25,00"
+        }
+      }
+    }
+  }
+}
