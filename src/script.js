@@ -1,17 +1,6 @@
 // Global vars
 const main = document.querySelector('MAIN');
 // Objects for LocalStorage
-const vino = {};
-const listaVini = {};
-const cantineVini = {};
-const regioniVini = {};
-const cartaVini = {
-  rossi:regioniVini,
-  bianchi:regioniVini,
-  rosati:regioniVini,
-  spumanti:regioniVini,
-  birre:regioniVini,
-};
 
 
 // Helper functions
@@ -159,19 +148,42 @@ const saveBtn = document.querySelector('#save');
 saveBtn.addEventListener("click", save);
 
 function save() {
+  const cartaVini = saveRegioni();
+  console.log(cartaVini);
+}
+
+function saveRegioni() {
   const selRegioni = main.querySelectorAll('.regione');
+  const regioni = {};
+  let i = 0;
 
   selRegioni.forEach(regione => {
-    saveCantine(regione);
+    const input = regione.querySelector('INPUT');
+    const info = {};
+    info[`${input.name}`] = `${input.value}`;
+    info['cantine'] = saveCantine(regione);
+    regioni[`regione${i}`] = info;
+    i++;
   });
+
+  return regioni;
 }
 
 function saveCantine(regione) {
   const selCantine = regione.querySelectorAll('.cantina');
+  const cantine = {};
+  let i=0;
 
   selCantine.forEach(cantina => {
-    saveVini(cantina);
+    const input = cantina.querySelector('INPUT');
+    const info = {};
+    info[`${input.name}`] = `${input.value}`;
+    info['vini'] = saveVini(cantina);
+    cantine[`cantina${i}`] = info;
+    i++;
   });
+
+  return cantine;
 }
 
 function saveVini(cantina) {
@@ -187,7 +199,7 @@ function saveVini(cantina) {
     vini[`vino${i}`] = info;
     i++;
   });
-  console.log(vini);
+  return vini;
 }
 
 
