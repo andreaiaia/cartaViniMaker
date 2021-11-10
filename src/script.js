@@ -1,5 +1,6 @@
 // Global vars
 const main = document.querySelector('MAIN');
+let chosen;
 // Objects for LocalStorage
 
 
@@ -34,6 +35,7 @@ addVino.addEventListener("click", () => {
 
 // Funzioni
 function initForms(vinoScelto) {
+  chosen = vinoScelto;
   let ita, eng;
   switch (vinoScelto) {
     case "rosso":
@@ -149,7 +151,13 @@ saveBtn.addEventListener("click", save);
 
 function save() {
   const cartaVini = saveRegioni();
-  console.log(cartaVini);
+
+  let toSave = JSON.stringify(cartaVini);
+
+  localStorage.setItem(chosen, toSave);
+
+  let toRead = JSON.parse(localStorage.getItem(chosen));
+  console.log(toRead);
 }
 
 function saveRegioni() {
