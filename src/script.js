@@ -305,6 +305,7 @@ function renderRegione(obj) {
 
 function renderCantina(obj) {
   const cont_cantina = document.createElement('DIV');
+  cont_cantina.classList.add('rd_cont_cantina');
 
   const nome = document.createElement('P');
   nome.classList.add('rd_cantina');
@@ -323,24 +324,28 @@ function renderCantina(obj) {
 }
 
 function renderVini(obj, parent) {
+  const gruppo = document.createElement('DIV');
+  gruppo.classList.add('rd_gruppo');
   const anno_tipo = document.createElement('P');
   anno_tipo.classList.add('rd_anno_tipo');
-  anno_tipo.innerHTML = obj["anno_tipo"];
-  parent.appendChild(anno_tipo);
+  anno_tipo.innerHTML = obj["anno_tipo"] + ' -';
+  gruppo.appendChild(anno_tipo);
 
   const nome = document.createElement('P');
   nome.classList.add('rd_nome');
   nome.innerHTML = obj["nome"];
-  parent.appendChild(nome);
+  gruppo.appendChild(nome);
 
   const denom = document.createElement('P');
   denom.classList.add('rd_denom');
   denom.innerHTML = obj["denom"];
-  parent.appendChild(denom);
+  gruppo.appendChild(denom);
+
+  parent.appendChild(gruppo);
 
   const costo = document.createElement('P');
   costo.classList.add('rd_costo');
-  costo.innerHTML = obj["costo"];
+  costo.innerHTML = obj["costo"] + "€";
   parent.appendChild(costo);
 }
 

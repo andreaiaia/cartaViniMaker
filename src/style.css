@@ -86,7 +86,6 @@ button:active {
   border: 3px solid black
 }
 
-
 .btn-save {
   background-color:#4CAF50;
   border: 2px solid #4CAF50;
@@ -150,9 +149,70 @@ button:active {
   text-transform: uppercase;
 }
 .region_name {
-  margin: 5px 0 25px;
+  margin: 10px 0 25px;
   text-align: center;
   font-size: 17pt;
   font-weight: bold;
   text-transform: uppercase;
+}
+.rd_cont_cantina {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  gap: 10px;
+}
+.rd_cantina {
+  text-align: end;
+  margin: 5px 0;
+  font-size: 16pt;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.rd_anno_tipo {
+  margin: 5px 0;
+  font-size: 12pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+.rd_nome {
+  margin: 5px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+.rd_denom {
+  margin: 5px 0;
+  font-size: 10pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline;
+}
+.rd_costo {
+  margin: 6px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  display: inline;
+}
+.rd_vini {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.rd_gruppo > * {
+  padding-right: 5px;
+}
+
+@media print {
+  header {
+    display: none;
+    border: none;
+  }
+  main {
+    width: inherit;
+    margin: 1cm;
+  }
+  .no_print {
+    display: none;
+  }
 }
