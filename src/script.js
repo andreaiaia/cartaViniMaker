@@ -1,7 +1,6 @@
 // Global vars
 const main = document.querySelector('MAIN');
 let chosen;
-// Objects for LocalStorage
 
 // Helper functions
 function spacing(parent, type) {
@@ -37,6 +36,7 @@ const choiceBtns = document.querySelectorAll('.tipo');
 const addRegione = document.querySelector('#new_regione');
 const addCantina = document.querySelector('#new_cantina');
 const addVino = document.querySelector('#new_vino');
+const renderBtn = document.querySelector("#render");
 
 // Event listeners
 choiceBtns.forEach(btn => btn.addEventListener("click", (e) => {
@@ -53,6 +53,11 @@ addCantina.addEventListener("click", () => {
 addVino.addEventListener("click", () => {
   const daddy = main.lastChild.lastChild;
   newVino(daddy, null);
+});
+
+renderBtn.addEventListener("click", () => {
+  save(); //auto saves, then renders
+  render();
 });
 
 // Funzioni
@@ -94,6 +99,7 @@ function initForms(vinoScelto) {
 function newRegione(obj) {
   const regione = document.createElement('DIV');
   regione.classList.add("regione");
+  spacing(regione, 'divider');
   const etichetta = makeLabel("regione", "Regione delle cantine:");
   const campo = makeInput("text", "regione", obj ? obj["regione"] : "");
   const btn = makeBtn("del-regione", "ELIMINA REGIONE");
@@ -104,9 +110,8 @@ function newRegione(obj) {
 
   delItem(regione);
 
-  spacing(main, 'divider');
-  main.appendChild(regione);
   spacing(regione, 'divider');
+  main.appendChild(regione);
 
   if (obj) {
     for (let key in obj) {
@@ -264,7 +269,7 @@ function start(menuScelto) {
   chosen = menuScelto;
   initForms(menuScelto);
   if (localStorage.getItem(menuScelto)) {
-    let parsedMenu = JSON.parse(localStorage.getItem(menuScelto));
+    const parsedMenu = JSON.parse(localStorage.getItem(menuScelto));
     // chiamo newRegione per ogni regione
     for (let key in parsedMenu) {
       newRegione(parsedMenu[key]);
@@ -272,6 +277,71 @@ function start(menuScelto) {
   } else {
     newRegione(null);
   }
+}
+
+// RENDER FUNCTIONS
+function render() {
+  const regioni = document.querySelectorAll(".regione");
+  regioni.forEach(regione => {
+    regione.style.display = "none";
+  });
+
+  const parsedMenu = JSON.parse(localStorage.getItem(chosen));
+  for (let key in parsedMenu) {
+    renderRegione(parsedMenu[key]);
+  }
+}
+
+function renderRegione(obj) {
+  const nome = document.createElement('H2');
+  nome.classList.add('region_name');
+  nome.innerHTML = obj["regione"];
+  main.appendChild(nome);
+
+  for (let key in obj) {
+    if (key != 'regione') renderCantina(obj[key]);
+  }
+}
+
+function renderCantina(obj) {
+  const cont_cantina = document.createElement('DIV');
+
+  const nome = document.createElement('P');
+  nome.classList.add('rd_cantina');
+  nome.innerHTML = obj["cantina"];
+  cont_cantina.appendChild(nome);
+
+  const vini = document.createElement('DIV');
+  vini.classList.add('rd_vini');
+
+  for (let key in obj) {
+    if (key != 'cantina') renderVini(obj[key], vini);
+  }
+
+  cont_cantina.appendChild(vini);
+  main.appendChild(cont_cantina);
+}
+
+function renderVini(obj, parent) {
+  const anno_tipo = document.createElement('P');
+  anno_tipo.classList.add('rd_anno_tipo');
+  anno_tipo.innerHTML = obj["anno_tipo"];
+  parent.appendChild(anno_tipo);
+
+  const nome = document.createElement('P');
+  nome.classList.add('rd_nome');
+  nome.innerHTML = obj["nome"];
+  parent.appendChild(nome);
+
+  const denom = document.createElement('P');
+  denom.classList.add('rd_denom');
+  denom.innerHTML = obj["denom"];
+  parent.appendChild(denom);
+
+  const costo = document.createElement('P');
+  costo.classList.add('rd_costo');
+  costo.innerHTML = obj["costo"];
+  parent.appendChild(costo);
 }
 
 start("rosso");
