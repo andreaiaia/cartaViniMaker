@@ -1,51 +1,31 @@
 {
   "regione0": {
-    "regione": "",
-    "cantine": {
-      "cantina0": {
-        "cantina": "",
-        "vini": {
-          "vino0": {
-            "anno_tipo": "",
-            "nome": "",
-            "denom": "",
-            "costo": ""
-          }
-        }
+    "regione": "undefined",
+    "cantina0": {
+      "cantina": "undefined",
+      "vino0": {
+        "anno_tipo": "undefined",
+        "nome": "undefined",
+        "denom": "undefined",
+        "costo": "undefined"
       },
-      "cantina1": {
-        "cantina": "",
-        "vini": {
-          "vino0": {
-            "anno_tipo": "",
-            "nome": "",
-            "denom": "",
-            "costo": ""
-          }
-        }
-      },
-      "cantina2": {
-        "cantina": "",
-        "vini": {
-          "vino0": {
-            "anno_tipo": "",
-            "nome": "",
-            "denom": "",
-            "costo": ""
-          },
-          "vino1": {
-            "anno_tipo": "",
-            "nome": "",
-            "denom": "",
-            "costo": ""
-          },
-          "vino2": {
-            "anno_tipo": "",
-            "nome": "",
-            "denom": "",
-            "costo": ""
-          }
-        }
+      "vino1": {
+        "anno_tipo": "undefined",
+        "nome": "undefined",
+        "denom": "undefined",
+        "costo": "undefined"
+      }
+    }
+  },
+  "regione1": {
+    "regione": "undefined",
+    "cantina0": {
+      "cantina": "undefined",
+      "vino0": {
+        "anno_tipo": "undefined",
+        "nome": "undefined",
+        "denom": "undefined",
+        "costo": "undefined"
       }
     }
   }

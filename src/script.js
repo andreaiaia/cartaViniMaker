@@ -3,12 +3,32 @@ const main = document.querySelector('MAIN');
 let chosen;
 // Objects for LocalStorage
 
-
 // Helper functions
 function spacing(parent, type) {
   const space = document.createElement('DIV');
   space.classList.add(type);
   parent.appendChild(space);
+}
+// Helpers to create DOM elements
+function makeLabel(forAtt, description) {
+  const etichetta = document.createElement('LABEL');
+  etichetta.setAttribute("for",forAtt);
+  etichetta.innerHTML = description;
+  return etichetta;
+}
+function makeInput(type, name, val) {
+  const campo = document.createElement('INPUT');
+  campo.setAttribute("type",type);
+  campo.setAttribute("name",name);
+  campo.value = val ? val : "";
+  return campo;
+}
+function makeBtn(theClass, innerContent) {
+  const btn = document.createElement('BUTTON');
+  btn.classList.add(theClass);
+  btn.classList.add("btn-del");
+  btn.innerHTML = innerContent;
+  return btn;
 }
 
 // SCELTA TIPOLOGIA VINO -> CREAZIONE REGIONE->CANTINA->VINO
@@ -19,7 +39,9 @@ const addCantina = document.querySelector('#new_cantina');
 const addVino = document.querySelector('#new_vino');
 
 // Event listeners
-choiceBtns.forEach(btn => btn.addEventListener("click", (e) => {start(e.target.id)}));
+choiceBtns.forEach(btn => btn.addEventListener("click", (e) => {
+  start(e.target.id);
+}));
 // Spicy Event Listeners
 addRegione.addEventListener("click", () => {newRegione(null)});
 
@@ -34,8 +56,7 @@ addVino.addEventListener("click", () => {
 });
 
 // Funzioni
-function initForms(vinoScelto, obj) {
-  chosen = vinoScelto;
+function initForms(vinoScelto) {
   let ita, eng;
   switch (vinoScelto) {
     case "rosso":
@@ -66,17 +87,15 @@ function initForms(vinoScelto, obj) {
   title.id = "p_header";
   title.innerHTML = `${ita}<span class="subtitle"> ${eng}</span>`;
   main.appendChild(title);
-
-  newRegione(obj);
 }
 
 // CREAZIONE DEGLI INPUT FIELDS
 // input nome regione
-function newRegione(val) {
+function newRegione(obj) {
   const regione = document.createElement('DIV');
   regione.classList.add("regione");
   const etichetta = makeLabel("regione", "Regione delle cantine:");
-  const campo = makeInput("text", "regione", val);
+  const campo = makeInput("text", "regione", obj ? obj["regione"] : "");
   const btn = makeBtn("del-regione", "ELIMINA REGIONE");
 
   regione.appendChild(etichetta);
@@ -89,17 +108,23 @@ function newRegione(val) {
   main.appendChild(regione);
   spacing(regione, 'divider');
 
-  newCantina(regione, val);
+  if (obj) {
+    for (let key in obj) {
+      if (key != "regione") newCantina(regione, obj[key]);
+    }
+  } else {
+    newCantina(regione, obj);
+  }
 }
 
 // input nome cantine
-function newCantina(parent, val) {
+function newCantina(parent, obj) {
   const cantina = document.createElement('DIV');
   cantina.classList.add("cantina");
   const p = document.createElement('P');
   p.classList.add("input_cantina");
   const etichetta = makeLabel("cantina", "Cantina:");
-  const campo = makeInput("text","cantina", val);
+  const campo = makeInput("text","cantina", obj ? obj["cantina"] : "");
   const btn = makeBtn("del_cantina", "ELIMINA CANTINA");
 
   p.appendChild(etichetta);
@@ -111,38 +136,44 @@ function newCantina(parent, val) {
 
   parent.appendChild(cantina);
 
-  newVino(cantina, val);
+  if (obj) {
+    for (let key in obj) {
+      if (key != "cantina") newVino(cantina, obj[key]);
+    }
+  } else {
+    newVino(cantina, obj);
+  }
 }
 
 // input vino - questa funzione è orribile e si può fare decisamente meglio
-function newVino(parent, val) {
+function newVino(parent, obj) {
   const vino = document.createElement('DIV');
   vino.classList.add('vino');
   const p1 = document.createElement('P');
   p1.classList.add("inputs");
   const etichetta1 = makeLabel("anno_tipo", "Anno e tipo:");
-  const campo1 = makeInput("text", "anno_tipo", val);
+  const campo1 = makeInput("text", "anno_tipo", obj ? obj["anno_tipo"] : "");
   p1.appendChild(etichetta1);
   p1.appendChild(campo1);
 
   const p2 = document.createElement('P');
   p2.classList.add("inputs");
   const etichetta2 = makeLabel("nome", "Nome:");
-  const campo2 = makeInput("text", "nome", val);
+  const campo2 = makeInput("text", "nome", obj ? obj["nome"] : "");
   p2.appendChild(etichetta2);
   p2.appendChild(campo2);
 
   const p3 = document.createElement('P');
   p3.classList.add("inputs");
   const etichetta3 = makeLabel("denom", "Indicazione:");
-  const campo3 = makeInput("text", "denom", val);
+  const campo3 = makeInput("text", "denom", obj ? obj["denom"] : "");
   p3.appendChild(etichetta3);
   p3.appendChild(campo3);
 
   const p4 = document.createElement('P');
   p4.classList.add("inputs");
   const etichetta4 = makeLabel("prezzo", "Costo (in 00,00):");
-  const campo4 = makeInput("text", "costo", val);
+  const campo4 = makeInput("text", "costo", obj ? obj["costo"] : "");
   p4.appendChild(etichetta4);
   p4.appendChild(campo4);
 
@@ -157,7 +188,6 @@ function newVino(parent, val) {
   delItem(vino);
 
   parent.appendChild(vino);
-
 }
 
 // DELETING THINGS
@@ -173,11 +203,8 @@ saveBtn.addEventListener("click", save);
 
 function save() {
   const cartaVini = saveRegioni();
-
   let toSave = JSON.stringify(cartaVini);
-
   localStorage.setItem(chosen, toSave);
-
   let toRead = JSON.parse(localStorage.getItem(chosen));
   console.log(toRead);
 }
@@ -190,8 +217,15 @@ function saveRegioni() {
   selRegioni.forEach(regione => {
     const input = regione.querySelector('INPUT');
     const info = {};
-    info[`${input.name}`] = `${input.val}`;
-    info['cantine'] = saveCantine(regione);
+    info[`${input.name}`] = `${input.value}`;
+
+    const selCantine = regione.querySelectorAll('.cantina');
+    let j = 0;
+    selCantine.forEach(cantina => {
+      info[`cantina${j}`] = saveCantina(cantina);
+      j++;
+    });
+  
     regioni[`regione${i}`] = info;
     i++;
   });
@@ -199,69 +233,44 @@ function saveRegioni() {
   return regioni;
 }
 
-function saveCantine(regione) {
-  const selCantine = regione.querySelectorAll('.cantina');
-  const cantine = {};
-  let i=0;
+function saveCantina(cantina) {
+  const input = cantina.querySelector('INPUT');
+  const info = {};
+  info[`${input.name}`] = `${input.value}`;
 
-  selCantine.forEach(cantina => {
-    const input = cantina.querySelector('INPUT');
-    const info = {};
-    info[`${input.name}`] = `${input.val}`;
-    info['vini'] = saveVini(cantina);
-    cantine[`cantina${i}`] = info;
-    i++;
-  });
-
-  return cantine;
-}
-
-function saveVini(cantina) {
   const selVini = cantina.querySelectorAll('.vino');
-  const vini = {}; 
   let i = 0;
   selVini.forEach(vino => {
-    const inputs = vino.querySelectorAll('INPUT');
-    const info = {};
-    inputs.forEach(inp => {
-      info[`${inp.name}`]=`${inp.val}`;
-    });
-    vini[`vino${i}`] = info;
+    info[`vino${i}`] = saveVino(vino);
     i++;
   });
-  return vini;
+
+  return info;
 }
 
-// Helpers to create DOM elements
-function makeLabel(forAtt, description) {
-  const etichetta = document.createElement('LABEL');
-  etichetta.setAttribute("for",forAtt);
-  etichetta.innerHTML = description;
-  return etichetta;
-}
+function saveVino(vino) {
+  const info = {};
 
-function makeInput(type, name, val) {
-  const campo = document.createElement('INPUT');
-  campo.setAttribute("type",type);
-  campo.setAttribute("name",name);
-  campo.value = val ? val : "";
-  return campo;
-}
+  const inputs = vino.querySelectorAll('INPUT');
+  inputs.forEach(inp => {
+    info[`${inp.name}`]=`${inp.value}`;
+  });
 
-function makeBtn(theClass, innerContent) {
-  const btn = document.createElement('BUTTON');
-  btn.classList.add(theClass);
-  btn.classList.add("btn-del");
-  btn.innerHTML = innerContent;
-  return btn;
+  return info;
 }
 
 // Controlla se ci sono salvataggi precedenti, se sì li carica
 function start(menuScelto) {
+  chosen = menuScelto;
+  initForms(menuScelto);
   if (localStorage.getItem(menuScelto)) {
-    initForms(menuScelto, JSON.parse(localStorage.getItem(menuScelto)));
+    let parsedMenu = JSON.parse(localStorage.getItem(menuScelto));
+    // chiamo newRegione per ogni regione
+    for (let key in parsedMenu) {
+      newRegione(parsedMenu[key]);
+    }
   } else {
-    initForms(menuScelto, null);
+    newRegione(null);
   }
 }
 
