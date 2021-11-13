@@ -348,5 +348,3 @@ function renderVini(obj, parent) {
   costo.innerHTML = obj["costo"] + "€";
   parent.appendChild(costo);
 }
-
-start("rosso");
