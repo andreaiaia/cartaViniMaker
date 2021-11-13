@@ -283,7 +283,7 @@ function start(menuScelto) {
 function render() {
   const regioni = document.querySelectorAll(".regione");
   regioni.forEach(regione => {
-    regione.style.display = "none";
+    regione.remove();
   });
 
   const parsedMenu = JSON.parse(localStorage.getItem(chosen));
@@ -341,10 +341,14 @@ function renderVini(obj, parent) {
   denom.innerHTML = obj["denom"];
   gruppo.appendChild(denom);
 
-  parent.appendChild(gruppo);
-
+  
   const costo = document.createElement('P');
   costo.classList.add('rd_costo');
   costo.innerHTML = obj["costo"] + "€";
-  parent.appendChild(costo);
+  
+  const vino = document.createElement('DIV');
+  
+  vino.appendChild(gruppo);
+  vino.appendChild(costo);
+  parent.appendChild(vino);
 }

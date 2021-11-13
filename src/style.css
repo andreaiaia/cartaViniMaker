@@ -194,7 +194,7 @@ button:active {
   font-weight: 500;
   display: inline;
 }
-.rd_vini {
+.rd_vini > div {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
