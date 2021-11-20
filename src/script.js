@@ -326,21 +326,21 @@ function renderCantina(obj) {
 function renderVini(obj, parent) {
   const gruppo = document.createElement('DIV');
   gruppo.classList.add('rd_gruppo');
-  const anno_tipo = document.createElement('P');
-  anno_tipo.classList.add('rd_anno_tipo');
-  anno_tipo.innerHTML = obj["anno_tipo"] + ' -';
-  gruppo.appendChild(anno_tipo);
-
+  
   const nome = document.createElement('P');
   nome.classList.add('rd_nome');
   nome.innerHTML = obj["nome"];
   gruppo.appendChild(nome);
-
+  
   const denom = document.createElement('P');
   denom.classList.add('rd_denom');
   denom.innerHTML = obj["denom"];
   gruppo.appendChild(denom);
-
+  
+  const anno_tipo = document.createElement('P');
+  anno_tipo.classList.add('rd_anno_tipo');
+  anno_tipo.innerHTML = obj["anno_tipo"] + ' -';
+  gruppo.appendChild(anno_tipo);
   
   const costo = document.createElement('P');
   costo.classList.add('rd_costo');
