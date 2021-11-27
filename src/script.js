@@ -42,16 +42,6 @@ choiceBtns.forEach(btn => btn.addEventListener("click", (e) => {
 // Spicy Event Listeners
 addRegione.addEventListener("click", () => {newRegione(null)});
 
-addCantina.addEventListener("click", () => {
-  const last = main.lastChild;
-  newCantina(last, null);
-});
-
-addVino.addEventListener("click", () => {
-  const daddy = main.lastChild.lastChild;
-  newVino(daddy, null);
-});
-
 renderBtn.addEventListener("click", () => {
   save(); //auto saves, then renders
   render();
