@@ -100,13 +100,6 @@ button:active {
   background-color: #f44336;
   border: 2px solid #f44336;
 }
-.del_vino {
-  margin-left: 70%;
-}
-.del_cantina {
-  font-size: 12px;
-  margin-left: 75px;
-}
 
 .inputs {
   width: 80%;

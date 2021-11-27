@@ -25,7 +25,6 @@ function makeInput(type, name, val) {
 function makeBtn(theClass, innerContent) {
   const btn = document.createElement('BUTTON');
   btn.classList.add(theClass);
-  btn.classList.add("btn-del");
   btn.innerHTML = innerContent;
   return btn;
 }
@@ -34,8 +33,6 @@ function makeBtn(theClass, innerContent) {
 // Selezione elementi DOM
 const choiceBtns = document.querySelectorAll('.tipo');
 const addRegione = document.querySelector('#new_regione');
-const addCantina = document.querySelector('#new_cantina');
-const addVino = document.querySelector('#new_vino');
 const renderBtn = document.querySelector("#render");
 
 // Event listeners
@@ -95,6 +92,9 @@ function initForms(vinoScelto) {
 }
 
 // CREAZIONE DEGLI INPUT FIELDS
+/* 
+  <button class="btn-add-cantina">+ Cantina</button>
+*/
 // input nome regione
 function newRegione(obj) {
   const regione = document.createElement('DIV');
@@ -102,13 +102,16 @@ function newRegione(obj) {
   spacing(regione, 'divider');
   const etichetta = makeLabel("regione", "Regione delle cantine:");
   const campo = makeInput("text", "regione", obj ? obj["regione"] : "");
-  const btn = makeBtn("del-regione", "ELIMINA REGIONE");
+  const delBtn = makeBtn("btn-del", "ELIMINA REGIONE");
+  const cantinaBtn = makeBtn("btn-add-cantina", "+ Cantina");
 
   regione.appendChild(etichetta);
   regione.appendChild(campo);
-  regione.appendChild(btn);
+  regione.appendChild(delBtn);
+  regione.appendChild(cantinaBtn);
 
   delItem(regione);
+  addCantinaBtn(regione);
 
   spacing(regione, 'divider');
   main.appendChild(regione);
@@ -130,14 +133,17 @@ function newCantina(parent, obj) {
   p.classList.add("input_cantina");
   const etichetta = makeLabel("cantina", "Cantina:");
   const campo = makeInput("text","cantina", obj ? obj["cantina"] : "");
-  const btn = makeBtn("del_cantina", "ELIMINA CANTINA");
+  const delBtn = makeBtn("btn-del", "ELIMINA CANTINA");
+  const vinoBtn = makeBtn("btn-add-vino", "+ Vino");
 
   p.appendChild(etichetta);
   p.appendChild(campo);
-  p.appendChild(btn);
+  p.appendChild(delBtn);
+  p.appendChild(vinoBtn);
   cantina.appendChild(p);
 
   delItem(cantina);
+  addVinoBtn(cantina);
 
   parent.appendChild(cantina);
 
@@ -182,7 +188,7 @@ function newVino(parent, obj) {
   p4.appendChild(etichetta4);
   p4.appendChild(campo4);
 
-  const btn = makeBtn("del_vino", "ELIMINA VINO");
+  const btn = makeBtn("btn-del", "ELIMINA VINO");
 
   vino.appendChild(p1);
   vino.appendChild(p2);
@@ -197,8 +203,18 @@ function newVino(parent, obj) {
 
 // DELETING THINGS
 function delItem(parent) {
-  const delBtn = parent.querySelector('BUTTON');
+  const delBtn = parent.querySelector('.btn-del');
   delBtn.addEventListener("click", () => {parent.remove()});
+}
+
+function addCantinaBtn(parent) {
+  const btn = parent.querySelector('.btn-add-cantina');
+  btn.addEventListener("click", () => {newCantina(parent, null)})
+}
+
+function addVinoBtn(parent) {
+  const btn = parent.querySelector('.btn-add-vino');
+  btn.addEventListener("click", () => {newVino(parent, null)})
 }
 
 // SAVING AND CREATING PREVIEW
