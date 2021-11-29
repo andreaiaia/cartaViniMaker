@@ -207,6 +207,11 @@ function addVinoBtn(parent) {
   btn.addEventListener("click", () => {newVino(parent, null)})
 }
 
+function addSpacingBtn(parent) {
+  const btn = parent.querySelector('.btn-add-space');
+  btn.addEventListener("click", () => {spacing(parent, 'spacing')})
+}
+
 // SAVING AND CREATING PREVIEW
 const saveBtn = document.querySelector('#save');
 

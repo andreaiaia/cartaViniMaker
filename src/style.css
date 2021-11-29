@@ -37,13 +37,13 @@ aside {
 }
 
 button {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 500;
   background-color: #008CBA;
   border: 2px solid #008CBA;
   border-radius: 10px;
   color: white;
-  padding: 10px 15px;
+  padding: 5px 10px;
   margin: 1rem;
 }
 button:hover {
@@ -86,6 +86,10 @@ button:active {
   border: 3px solid black
 }
 
+.big-btn {
+  font-size: 1.5rem;
+  padding: 10px 15px;
+}
 .btn-save {
   background-color:#4CAF50;
   border: 2px solid #4CAF50;
@@ -120,7 +124,7 @@ button:active {
 }
 
 .spacing {
-  margin-top: 2rem;
+  padding-top: 2rem;
 }
 .divider {
   padding-bottom: 1rem;
