@@ -131,6 +131,10 @@ button:active {
   border-bottom: 2px solid grey;
   margin-bottom: 1rem;
 }
+.center_me{
+  display: block;
+  margin: 1rem auto;
+}
 
 /* QUESTI SONO SIA SCREEN-FRIENDLY CHE PRINT-FRIENDLY */
 #p_header {

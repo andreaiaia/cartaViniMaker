@@ -82,9 +82,6 @@ function initForms(vinoScelto) {
 }
 
 // CREAZIONE DEGLI INPUT FIELDS
-/* 
-  <button class="btn-add-cantina">+ Cantina</button>
-*/
 // input nome regione
 function newRegione(obj) {
   const regione = document.createElement('DIV');
@@ -191,25 +188,21 @@ function newVino(parent, obj) {
   parent.appendChild(vino);
 }
 
-// DELETING THINGS
+// ADDING EVENT LISTENERS
 function delItem(parent) {
   const delBtn = parent.querySelector('.btn-del');
   delBtn.addEventListener("click", () => {parent.remove()});
 }
-
 function addCantinaBtn(parent) {
   const btn = parent.querySelector('.btn-add-cantina');
   btn.addEventListener("click", () => {newCantina(parent, null)})
 }
-
 function addVinoBtn(parent) {
   const btn = parent.querySelector('.btn-add-vino');
   btn.addEventListener("click", () => {newVino(parent, null)})
 }
-
-function addSpacingBtn(parent) {
-  const btn = parent.querySelector('.btn-add-space');
-  btn.addEventListener("click", () => {spacing(parent, 'spacing')})
+function addSpace(btn) {
+  btn.addEventListener("click", () => {rd_spacing(btn)})
 }
 
 // SAVING AND CREATING PREVIEW
@@ -275,28 +268,13 @@ function saveVino(vino) {
   return info;
 }
 
-// Controlla se ci sono salvataggi precedenti, se sì li carica
-function start(menuScelto) {
-  chosen = menuScelto;
-  initForms(menuScelto);
-  if (localStorage.getItem(menuScelto)) {
-    const parsedMenu = JSON.parse(localStorage.getItem(menuScelto));
-    // chiamo newRegione per ogni regione
-    for (let key in parsedMenu) {
-      newRegione(parsedMenu[key]);
-    }
-  } else {
-    newRegione(null);
-  }
-}
-
 // RENDER FUNCTIONS
 function render() {
   const regioni = document.querySelectorAll(".regione");
   regioni.forEach(regione => {
     regione.remove();
   });
-
+  
   const parsedMenu = JSON.parse(localStorage.getItem(chosen));
   for (let key in parsedMenu) {
     renderRegione(parsedMenu[key]);
@@ -308,28 +286,35 @@ function renderRegione(obj) {
   nome.classList.add('region_name');
   nome.innerHTML = obj["regione"];
   main.appendChild(nome);
-
+  
   for (let key in obj) {
     if (key != 'regione') renderCantina(obj[key]);
   }
+  const spaceBtn = document.createElement('BUTTON');
+  spaceBtn.classList.add('center_me');
+  spaceBtn.classList.add('space-btn');
+  spaceBtn.classList.add('no_print');
+  spaceBtn.innerText = "+ spacing";
+  main.appendChild(spaceBtn);
+  addSpace(spaceBtn);
 }
 
 function renderCantina(obj) {
   const cont_cantina = document.createElement('DIV');
   cont_cantina.classList.add('rd_cont_cantina');
-
+  
   const nome = document.createElement('P');
   nome.classList.add('rd_cantina');
   nome.innerHTML = obj["cantina"];
   cont_cantina.appendChild(nome);
-
+  
   const vini = document.createElement('DIV');
   vini.classList.add('rd_vini');
-
+  
   for (let key in obj) {
     if (key != 'cantina') renderVini(obj[key], vini);
   }
-
+  
   cont_cantina.appendChild(vini);
   main.appendChild(cont_cantina);
 }
@@ -362,4 +347,25 @@ function renderVini(obj, parent) {
   vino.appendChild(gruppo);
   vino.appendChild(costo);
   parent.appendChild(vino);
+}
+
+function rd_spacing(btn) {
+  const space = document.createElement('DIV');
+  space.classList.add('spacing');
+  btn.insertAdjacentElement("afterend", space);
+}
+
+// Controlla se ci sono salvataggi precedenti, se sì li carica
+function start(menuScelto) {
+  chosen = menuScelto;
+  initForms(menuScelto);
+  if (localStorage.getItem(menuScelto)) {
+    const parsedMenu = JSON.parse(localStorage.getItem(menuScelto));
+    // chiamo newRegione per ogni regione
+    for (let key in parsedMenu) {
+      newRegione(parsedMenu[key]);
+    }
+  } else {
+    newRegione(null);
+  }
 }
