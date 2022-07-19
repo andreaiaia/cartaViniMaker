@@ -9,34 +9,6 @@ body {
   margin: 0;
 }
 
-header {
-  background-image: url('bg_stars.gif');
-  text-align: center;
-  font-family: 'Faster One', cursive;
-  font-size: 1.3rem;
-  color: lime;
-  margin: 0;
-  padding: 1rem 0 0;
-  border-bottom: 1px solid black;
-}
-
-main {
-  width: calc(100% - 240px);
-  min-height: 100%;
-  margin: 1cm;
-}
-
-aside {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  padding: 30vh 0;
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-}
-
 button {
   font-size: 1rem;
   font-weight: 500;
@@ -230,16 +202,6 @@ button:active {
 }
 
 @media print {
-  header {
-    display: none;
-    border: none;
-  }
-
-  main {
-    width: inherit;
-    margin: 1cm;
-  }
-
   .no_print {
     display: none;
   }

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+html {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+    background-image: url('bg_stars.gif');
+    text-align: center;
+    font-family: 'Faster One', cursive;
+    font-size: 1.3rem;
+    color: lime;
+    margin: 0;
+    padding: 1rem 0 0;
+    border-bottom: 1px solid black;
+}
+
+@media print {
+    header {
+        display: none;
+        border: none;
+    }
+}
