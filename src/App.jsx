@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './Components/Header';
 import Main from './Components/Main';
-import Aside from './Components/Aside';
 import Builder from './Components/Builder';
 
 function App() {
@@ -16,15 +15,7 @@ function App() {
     <div className="App">
         <Header />
         {(menu === '') && <Main choiceHandler={choiceHandler} />}
-        {
-          (menu !== '') &&
-          (
-            <>
-              <Builder choice={menu} />
-              <Aside />
-            </>
-          )
-        }
+        {(menu !== '') && <Builder choice={menu} />}
     </div>
   );
 }
