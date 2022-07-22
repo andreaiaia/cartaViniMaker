@@ -1,18 +1,30 @@
+import React, { useState } from 'react';
 import './App.css';
-import Header from './Header';
-import Main from './Main';
-import Aside from './Aside';
-
-// TODO make default.css
+import Header from './Components/Header';
+import Main from './Components/Main';
+import Aside from './Components/Aside';
+import Builder from './Components/Builder';
 
 function App() {
+  const [menu, setMenu] = useState('');
+
+  const choiceHandler = (choice) => {
+    setMenu(choice)
+  }
+
   return (
     <div className="App">
-      <body>
         <Header />
-        <Main />
-        <Aside />
-      </body>
+        {(menu === '') && <Main choiceHandler={choiceHandler} />}
+        {
+          (menu !== '') &&
+          (
+            <>
+              <Builder choice={menu} />
+              <Aside />
+            </>
+          )
+        }
     </div>
   );
 }
