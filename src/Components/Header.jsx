@@ -1,10 +1,10 @@
 import React from 'react';
-import './Header.css';
+import style from './Header.module.css';
 
 export default function Header() {
   return (
-    <header>
-        <h1 className="logo no_print">Carta dei vini Maker</h1>
+    <header className={style.header}>
+        <h1 className={`${style.logo} ${style.no_print}`}>Carta dei vini Maker</h1>
     </header>
   )
 }

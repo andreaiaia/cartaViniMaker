@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
 
-html {
-    font-family: Helvetica, Arial, sans-serif;
-}
-
-header {
+.header {
     background-image: url('../assets/bg_stars.gif');
     text-align: center;
     font-family: 'Faster One', cursive;
@@ -16,7 +12,7 @@ header {
 }
 
 @media print {
-    header {
+    .header {
         display: none;
         border: none;
     }
