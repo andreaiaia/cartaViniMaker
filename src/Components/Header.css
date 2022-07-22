@@ -5,7 +5,7 @@ html {
 }
 
 header {
-    background-image: url('bg_stars.gif');
+    background-image: url('../assets/bg_stars.gif');
     text-align: center;
     font-family: 'Faster One', cursive;
     font-size: 1.3rem;
