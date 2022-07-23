@@ -1,12 +1,12 @@
 import React from "react";
 
-import Aside from "../Components/Aside";
+import ToolBar from "../Components/ToolBar";
 
 export default function Builder({ choice }) {
   return (
     <>
-      Builder {choice}
-      <Aside />
+      <ToolBar title={choice} />
+      Builder
     </>
   );
 }
