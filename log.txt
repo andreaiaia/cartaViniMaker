@@ -1,125 +1,37 @@
-{
-  "regione0": {
-    "regione": "Basilicata",
-    "cantina0": {
-      "cantina": "Cantine del Notaio",
-      "vino0": {
-        "anno_tipo": "2018 Aglianico",
-        "nome": "Il Rogito",
-        "denom": "IGT",
-        "costo": "30,00"
-      }
-    },
-    "cantina1": {
-      "cantina": "Dragone",
-      "vino0": {
-        "anno_tipo": "2020 Primitivo e Sangiovese",
-        "nome": "Pietrapenta",
-        "denom": "IGP",
-        "costo": "18,00"
-      }
-    }
-  },
-  "regione1": {
-    "regione": "Campania",
-    "cantina0": {
-      "cantina": "Fonzone",
-      "vino0": {
-        "anno_tipo": "2020 Aglianico",
-        "nome": "Irpinia rosato Fonzone",
-        "denom": "DOC",
-        "costo": "24,00"
-      }
-    }
-  },
-  "regione2": {
-    "regione": "Piemonte",
-    "cantina0": {
-      "cantina": "Fontanafredda",
-      "vino0": {
-        "anno_tipo": "2020 ",
-        "nome": "Solerose Langhe Rosato",
-        "denom": "DOC",
-        "costo": "19,00"
-      }
-    }
-  },
-  "regione3": {
-    "regione": "Puglia",
-    "cantina0": {
-      "cantina": "Calò",
-      "vino0": {
-        "anno_tipo": "2020 Negramaro,Malvasia Nera",
-        "nome": "Rosa del Golfo",
-        "denom": "IGT",
-        "costo": "18,00"
-      }
-    },
-    "cantina1": {
-      "cantina": "Vallone",
-      "vino0": {
-        "anno_tipo": "2019 Susumaniello",
-        "nome": "Tenuta Serranova",
-        "denom": "IGP",
-        "costo": "21,00"
-      }
-    },
-    "cantina2": {
-      "cantina": "Cantele",
-      "vino0": {
-        "anno_tipo": "2020 Negramaro Rosato",
-        "nome": "Rohesia",
-        "denom": "IGT",
-        "costo": "21,00"
-      },
-      "vino1": {
-        "anno_tipo": "2020 Negramaro Rosato",
-        "nome": "Negramaro rosato Salento ",
-        "denom": "IGT",
-        "costo": "16,00"
-      }
-    },
-    "cantina3": {
-      "cantina": "Diomede",
-      "vino0": {
-        "anno_tipo": "2020 Negroamaro Rosato",
-        "nome": "Folia",
-        "denom": "IGP",
-        "costo": "24,00"
-      }
-    }
-  },
-  "regione4": {
-    "regione": "Trentino Alto Adige",
-    "cantina0": {
-      "cantina": "Colterenzio",
-      "vino0": {
-        "anno_tipo": "2020 Lagrein",
-        "nome": "Lagrein Rosè",
-        "denom": "DOC",
-        "costo": "24,00"
-      }
-    },
-    "cantina1": {
-      "cantina": "Manincor",
-      "vino0": {
-        "anno_tipo": "2019 Lagrein,Merlot",
-        "nome": "Le rose di Manincor",
-        "denom": "DOC",
-        "costo": "36,00"
-      }
-    }
-  },
-  "regione5": {
-    "regione": "Veneto",
-    "cantina0": {
-      "cantina": "Conte Brandolini D'Adda",
-      "vino0": {
-        "anno_tipo": "2020 Pinot Grigio Ramato",
-        "nome": "Pinot Grigio Bio",
-        "denom": "",
-        "costo": "25,00"
-      }
-    }
-  }
-}
+3 tables
+
+CREATE TABLE rossi (
+  id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4() NOT NULL,
+  regione VARCHAR(20) NOT NULL,
+  cantina VARCHAR(100) NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  denominazione VARCHAR(5) NOT NULL,
+  prezzo NUMBER NOT NULL
+);
+
+CREATE TABLE bianchi (
+  id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4() NOT NULL,
+  regione VARCHAR(20) NOT NULL,
+  cantina VARCHAR(100) NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  denominazione VARCHAR(5) NOT NULL,
+  prezzo NUMBER NOT NULL
+);
+
+CREATE TABLE rosati (
+  id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4() NOT NULL,
+  regione VARCHAR(20) NOT NULL,
+  cantina VARCHAR(100) NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  denominazione VARCHAR(5) NOT NULL,
+  prezzo NUMBER NOT NULL
+);
+
+CREATE TABLE bollicine (
+  id UUID PRIMARY KEY NOT NULL DEFAULT uuid_generate_v4() NOT NULL,
+  regione VARCHAR(20) NOT NULL,
+  cantina VARCHAR(100) NOT NULL,
+  nome VARCHAR(20) NOT NULL,
+  denominazione VARCHAR(5) NOT NULL,
+  prezzo NUMBER NOT NULL
+);

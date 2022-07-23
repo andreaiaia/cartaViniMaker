@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+html {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+main {
+    width: calc(100% - 240px);
+    min-height: 100%;
+    margin: 1cm;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+.btn {
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 10px;
+    color: rgb(43, 43, 43);
+    padding: 10px 15px;
+    margin: 1rem;
+}
+
+.btn:hover {
+    border: 3px solid black
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+.rosso {
+    background-color: #ff5252e7;
+    border: 3px solid #ff5252e7;
+}
+
+.bianco {
+    background-color: #faefbee7;
+    border: 3px solid #faefbee7;
+}
+
+.rosato {
+    background-color: #fa8dfae7;
+    border: 3px solid #fa8dfae7;
+}
+
+.spumante {
+    background-color: #adff60e7;
+    border: 3px solid #adff60e7;
+}
+
+.birra {
+    background-color: #ffd560e7;
+    border: 3px solid #ffd560e7;
+}
+
+@media print {
+    main {
+        width: inherit;
+        margin: 1cm;
+    }
+}

@@ -1,0 +1,33 @@
+version: '1.0'
+
+networks:
+  cvm-local-network:
+    driver: bridge
+
+services:
+  -:
+    hostname: -
+    image: -:10
+    ports:
+      - "-:-"
+    restart: always
+    networks:
+      - cvm-local-network
+    environment: .env
+
+  liste_di_proscrizione:
+    image: liste_di_proscrizione
+    platform: linux/amd64
+    build:
+      target: production
+    networks:
+      - cvm-local-network
+    ports:
+      - "3000:3000"
+    environment: .env
+    restart: always
+    depends_on:
+      -:
+        condition: service_started
+      migrations:
+        condition: service_completed_successfully

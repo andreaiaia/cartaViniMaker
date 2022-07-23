@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+html {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+  min-height: 1080px;
+  margin: 0;
+}
+
+.inputs {
+  width: 80%;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 3fr;
+}
+
+.inputs>* {
+  display: block;
+}
+
+.inputs>label {
+  justify-self: end;
+  align-self: center;
+}
+
+.input_cantina>* {
+  display: inline;
+}
+
+.spacing {
+  padding-top: 2rem;
+}
+
+.divider {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid grey;
+  margin-bottom: 1rem;
+}
+
+.center_me {
+  display: block;
+  margin: 1rem auto;
+}
+
+/* QUESTI SONO SIA SCREEN-FRIENDLY CHE PRINT-FRIENDLY */
+#p_header {
+  margin: 5px 0;
+  font-size: 23pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  margin: 5px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.region_name {
+  margin: 10px 0 25px;
+  text-align: center;
+  font-size: 17pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.rd_cont_cantina {
+  display: grid;
+  grid-template-columns: 33% 1fr;
+  gap: 10px;
+}
+
+.rd_cantina {
+  text-align: end;
+  margin: 5px 0;
+  font-size: 16pt;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.rd_anno_tipo {
+  margin: 5px 0;
+  font-size: 12pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+
+.rd_nome {
+  margin: 5px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  text-transform: capitalize;
+  display: inline;
+}
+
+.rd_denom {
+  margin: 5px 0;
+  font-size: 10pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline;
+}
+
+.rd_costo {
+  margin: 6px 0;
+  font-size: 15pt;
+  font-weight: 500;
+  display: inline;
+}
+
+.rd_vini>div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.rd_gruppo>* {
+  padding-right: 5px;
+}
+
+@media print {
+  .no_print {
+    display: none;
+  }
+}
