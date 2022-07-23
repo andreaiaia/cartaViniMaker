@@ -10,6 +10,14 @@ main {
     margin: 1cm;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
 .btn {
     font-size: 1.5rem;
     font-weight: 500;

@@ -1,21 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header';
 import Main from './Components/MainChoice';
 import Builder from './Components/Builder';
 
 function App() {
-  const [menu, setMenu] = useState('');
-
-  const choiceHandler = (choice) => {
-    setMenu(choice)
-  }
-
   return (
     <div className="App">
+      <BrowserRouter>
         <Header />
-        {(menu === '') && <Main choiceHandler={choiceHandler} />}
-        {(menu !== '') && <Builder choice={menu} />}
+        <Routes>
+          <Route 
+            exact path='/' 
+            element={<Main />}
+          />
+          <Route 
+            exact path='/rossi'
+            element={<Builder choice={'rossi'} />}
+          />
+          <Route 
+            exact path='/bianchi'
+            element={<Builder choice={'bianchi'} />}
+          />
+          <Route 
+            exact path='/rosati'
+            element={<Builder choice={'rosati'} />}
+          />
+          <Route 
+            exact path='/bollicine'
+            element={<Builder choice={'bollicine'} />}
+          />
+          <Route 
+            exact path='/birre'
+            element={<Builder choice={'birre'} />}
+          />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
 
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
 .header {
     background-image: url('../assets/bg_stars.gif');
     text-align: center;
