@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&family=Ubuntu:wght@700&display=swap');
 
 a {
     text-decoration: none;
@@ -17,6 +17,18 @@ a:visited {
     margin: 0;
     padding: 1rem 0 0;
     border-bottom: 1px solid black;
+}
+
+.beta_badge {
+    display: inline-block;
+    background-color: red;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2rem;
+    color: yellow;
+    transform: translateX(-1rem) translateY(-1rem) rotateZ(30deg);
 }
 
 @media print {

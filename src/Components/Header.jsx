@@ -13,7 +13,7 @@ export default function Header() {
         <link rel='canonical' href='https://menubuilder.com/'/>
       </Helmet>
       <Link to='/'>
-        <h1 className={`${style.logo} ${style.no_print}`}>Carta dei vini Maker</h1>
+        <h1 className={`${style.logo} ${style.no_print}`}>Menu Builder <span className={style.beta_badge}>Beta</span></h1>
       </Link>
     </header>
   )
