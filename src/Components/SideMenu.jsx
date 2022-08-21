@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 export default function SideMenu() {
   return (
     <aside>
-        <Link 
-            to='/new'
-            className='btn'
-        >
-        Rosso
-        </Link>
+      <Link 
+        to='/new'
+        className='btn'
+      >
+        Nuovo
+      </Link>
     </aside>
   )
 }

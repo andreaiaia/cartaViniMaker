@@ -29,6 +29,10 @@ body {
   box-shadow: 0px 4px 8px -1px rgba(0, 0, 0, .5);
 }
 
+.btn:visited {
+  color: #fff;
+}
+
 .inputs {
   width: 80%;
   display: grid;
