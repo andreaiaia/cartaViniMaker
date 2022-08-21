@@ -10,7 +10,7 @@ body {
 }
 
 .btn {
-  padding: 12px 36px;
+  padding: 12px 36px 10px;
   font-weight: 500;
   line-height: 1rem;
   border-radius: 24px;
