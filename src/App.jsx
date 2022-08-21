@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Header from './Components/Header';
-import Main from './Pages/MainChoice';
+import Main from './Pages/Main';
 import Builder from './Pages/Builder';
 
 function App() {
